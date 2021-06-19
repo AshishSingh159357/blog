@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            align-items: center;
+        }
+        .text{
+            width: 50%;
+            text-align: center;
+        }
+        .text span{
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <p class="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores maxime ipsa expedita laboriosam temporibus pariatur eveniet, quibusdam saepe voluptatum atque, quia adipisci iste dolorem ratione doloribus. Voluptates atque ipsum harum.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam atque, alias odit magni dignissimos vero libero eos quos iusto doloribus unde necessitatibus corrupti sed facilis odio magnam veritatis. Beatae iusto cum veritatis neque aliquam.
+        </p>
+    </section>
+
+
+    <script src="anime.min.js"></script>
+    <script>
+        const text = document.querySelector('.text');
+        text.innerHTML=text.textContent.replace(/\S/g,"<span>$&</span>");
+    
+        const animation = anime.timeline({
+            targets:'.text span',
+            easeing : 'easeOutInExpo',
+            loop : true
+        });
+    
+        animation.add({
+            rotate : function(){
+                return anime.random(-360,360)
+            },
+            translateX : function(){
+                return anime.random(-500,500)
+            },
+            translateY : function(){
+                return anime.random(-500,500)
+            },
+            duration : 10000,
+            delay:anime.stagger(20),
+        })
+
+        .add({
+            rotate :0,
+            translateX : 0,
+            translateY : 0,
+            duration : 5000,
+            delay:anime.stagger(20),
+        })
+    </script>
+    
+</body>
+</html>
